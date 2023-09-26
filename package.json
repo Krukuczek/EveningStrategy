@@ -1,0 +1,26 @@
+{
+  "name": "eveningstrategy",
+  "version": "1.0.0",
+  "description": "project within 'The Odin Project' course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krukuczek/EveningStrategy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Krukuczek/EveningStrategy/issues"
+  },
+  "homepage": "https://github.com/Krukuczek/EveningStrategy#readme",
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
