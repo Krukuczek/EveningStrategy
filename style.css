@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&family=Roboto&display=swap');
+
+body {
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Righteous', cursive;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background: rgb(255, 243, 100);
+    background: linear-gradient(90deg, rgba(255, 243, 100, 1) 0%, rgba(164, 222, 249, 1) 33%, rgba(71, 89, 237, 1) 66%, rgba(3, 0, 77, 1) 100%);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    font-size: 4vh;
+}
+main.night{
+    background-color: rgb(42, 42, 42);
+    animation: toNight linear 1s;
+}
+main.day{
+    background-color: rgb(214, 214, 214);
+    animation: toDay linear 1s;
+}
+
+header.day {
+    background: rgb(255, 243, 100);
+    background: linear-gradient(82deg, #fff364 0%, #a4def9 100%);
+    color: rgb(255, 255, 255);
+}
+
+header.night {
+    background: rgb(3, 0, 77);
+    background: linear-gradient(82deg, #03004d 0%, #4759ed 100%);
+    color: rgb(204, 204, 204);
+}
+
+.sun {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    background-color: rgb(255, 255, 0);
+    border-radius: 50%;
+    z-index: -1;
+    left: 5%;
+    top: 0.5rem;
+    -webkit-box-shadow: 0px 0px 10px 10px rgb(255, 255, 0);
+    box-shadow: 0px 0px 10px 10px rgb(255, 213, 0);
+    cursor: pointer;
+    animation: changeToSun ease 1.5s;
+}
+
+.moon {
+    position: absolute;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    z-index: -1;
+    left: 90%;
+    top: 0.5rem;
+    -webkit-box-shadow: 0px 0px 00px 10px rgb(220, 254, 255);
+    box-shadow: 10px 2px 0px 3px rgb(220, 254, 255);
+    cursor: pointer;
+    animation: changeToMoon ease 1.5s;
+}
+
+main {
+    flex: 10;
+    display: flex;
+}
+
+#content {
+    flex: 30;
+}
+
+#navbar span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#navbar {
+    background-color: rgba(0,0,0,0);
+    display: flex;
+    animation: collappsenav 1s ease-in-out;
+    flex: 0;
+    width: auto;
+}
+
+#navbarContent {
+    flex: 6;
+    background-color: rgb(184, 184, 184, 0.6);
+    animation: collappsenav 1s ease-in-out;
+    width: 0px;
+    color: transparent;
+}
+
+#navbarButton {
+    margin-left: -1px;
+    background-color: rgb(173, 173, 173,0.5);
+    align-self: center;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 15%, 100% 85%, 0% 100%);
+    padding: 5px;
+}
+
+#navbarButton:hover {
+    background-color: rgb(163, 163, 163,0.6);
+    cursor: pointer;
+}
+
+#navbar.active #navbarContent {
+    flex: 5;
+    color: black;
+}
+
+#navbar.active {
+    animation: expandnav 1s ease-in-out;
+    flex: 6;
+}
+
+#navbar #navbarButton>span {
+    animation: flipBack 1s ease-in-out;
+}
+
+#navbar.active #navbarButton>span {
+    animation: flip 1s ease-in-out;
+    transform: rotate(180deg);
+}
+
+@keyframes flip {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(180deg)
+    }
+}
+
+@keyframes flipBack {
+    0% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes expandnav {
+    0% {
+        flex: 0;
+        width: 0px;
+    }
+
+    100% {
+        flex: 6;
+        width: auto;
+    }
+}
+
+@keyframes collappsenav {
+    0% {
+        flex: 6;
+        width: auto;
+    }
+
+    100% {
+        flex: 0;
+        width: 0px;
+    }
+}
+
+@keyframes changeToMoon {
+    0% {
+        width: 1em;
+        height: 1em;
+        background-color: rgb(255, 255, 0);
+        left: 5%;
+        -webkit-box-shadow: 0px 0px 10px 10px rgb(255, 255, 0);
+        box-shadow: 0px 0px 10px 10px rgb(255, 213, 0);
+    }
+
+    100% {
+        width: 1.2em;
+        height: 1.2em;
+        left: 90%;
+        -webkit-box-shadow: 0px 0px 00px 10px rgb(220, 254, 255);
+        box-shadow: 10px 2px 0px 3px rgb(220, 254, 255);
+    }
+}
+
+@keyframes changeToSun {
+    100% {
+        width: 1em;
+        height: 1em;
+        background-color: rgb(255, 255, 0);
+        left: 5%;
+        -webkit-box-shadow: 0px 0px 10px 10px rgb(255, 255, 0);
+        box-shadow: 0px 0px 10px 10px rgb(255, 213, 0);
+    }
+
+    0% {
+        width: 1.2em;
+        height: 1.2em;
+        left: 90%;
+        -webkit-box-shadow: 0px 0px 00px 10px rgb(220, 254, 255);
+        box-shadow: 10px 2px 0px 3px rgb(220, 254, 255);
+    }
+}
+@keyframes toNight{
+    0%{
+        background-color: rgb(214, 214, 214);
+    }
+    100%{
+        background-color: rgb(42, 42, 42);
+    }
+}
+@keyframes toDay{
+    100%{
+        background-color: rgb(214, 214, 214);
+    }
+    0%{
+        background-color: rgb(42, 42, 42);
+    }
+}
