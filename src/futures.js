@@ -28,18 +28,33 @@ export const activeNavbar = function () {
 };
 
 export const createTaskText = function () {
-    document.getElementById('newTaskButton').addEventListener('mouseenter', function(){
-        let createTaskText=document.createElement('div');
-        createTaskText.classList.add=('popUp');
-            let text = document.createElement('span');
-            text.innerText='Create New Task';
-            let arrow=document.createElement('span');
-            arrow.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24"><path d="M24 12l-10-10v7h-14v6h14v7z"/></svg>';
-          createTaskText.appendChild(text);
-          createTaskText.appendChild(arrow);
-        document.getElementById('content').appendChild(createTaskText);
+    document.getElementById('newTaskButton').addEventListener('mouseenter', function () {
+        popUpTaskText();
     });
-    document.getElementById('newTaskButton').addEventListener('mouseleave', function(){
-        console.log("i'm not hovered");
+    document.getElementById('newTaskButton').addEventListener('mouseleave', function () {
+        popDownTaskText();
     });
 }
+export const createTaskTextOnLoad = function () {
+    popUpTaskText();
+    setTimeout(() => { popDownTaskText() }, 5000);
+};
+
+function popUpTaskText() {
+    if (!document.getElementById('popUp')) {
+        let createTaskText = document.createElement('div');
+        createTaskText.id = 'popUp';
+        createTaskText.innerText = 'New Task';
+        document.getElementById('content').appendChild(createTaskText);
+    };
+};
+
+function popDownTaskText() {
+    if (document.getElementById('popUp')) {
+        const element = document.getElementById('popUp');
+        element.classList = 'remove';
+        setTimeout(() => {
+            element.remove();
+        }, 300);
+    };
+};
