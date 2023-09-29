@@ -58,3 +58,17 @@ function popDownTaskText() {
         }, 300);
     };
 };
+
+export function timePeriod(value){
+    const date = new Date();
+    let currentDay= String(date.getDate()).padStart(2, '0');
+    let currentMonth = String(date.getMonth()+1).padStart(2,"0");
+    let currentYear = date.getFullYear();
+    let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+    let inYearDate = `${currentYear+1}-${currentMonth}-${currentDay}`;
+    if(value==='min'){
+        return currentDate;
+    }else if(value==='max'){
+        return inYearDate;
+    }
+}

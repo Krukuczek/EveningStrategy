@@ -1,3 +1,5 @@
+import { timePeriod } from "./futures.js";
+
 export default function Task(title, description, taskDate, priority, done) {
     this.title = title;
     this.descrdescriptioniption = description;
@@ -32,31 +34,28 @@ export const createTaskContainer = function () {
           let taskDate=document.createElement('input');
           taskDate.id='taskDate';
           taskDate.type='date';
+          taskDate.setAttribute('min',timePeriod('min'));
+          taskDate.setAttribute('max',timePeriod('max'));
           taskForm.appendChild(taskDate);
-          //priority radio
+          //priority prio
           let priorityContainer = document.createElement('div');
           priorityContainer.id='priority';
-            //radio important
-            let radioImportant = document.createElement('input');
-            radioImportant.type='radio';
-            radioImportant.id='important';
-            radioImportant.name='priority';
-            radioImportant.value='important';
-            priorityContainer.appendChild(radioImportant);
-            //radio normal
-            let radioNormal = document.createElement('input');
-            radioNormal.type='radio';
-            radioNormal.id='normal';
-            radioNormal.name='priority';
-            radioNormal.value='normal';
-            priorityContainer.appendChild(radioNormal);
-            //radio low
-            let radioLow = document.createElement('input');
-            radioLow.type='radio';
-            radioLow.id='low';
-            radioLow.name='priority';
-            radioLow.value='low';
-            priorityContainer.appendChild(radioLow);
+            //prio important
+            let prioImportant = document.createElement('div');
+            prioImportant.id='important';
+            prioImportant.innerText='Important';
+            priorityContainer.appendChild(prioImportant);
+            //prio normal
+            let prioNormal = document.createElement('div');
+            prioNormal.id='normal';
+            prioNormal.classList='active';
+            prioNormal.innerText='Normal';
+            priorityContainer.appendChild(prioNormal);
+            //prio low
+            let prioLow = document.createElement('div');
+            prioLow.id='low';
+            prioLow.innerText='Low';
+            priorityContainer.appendChild(prioLow);
           taskForm.appendChild(priorityContainer);
           //make task - submit
           let submitTask = document.createElement('input');
