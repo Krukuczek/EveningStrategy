@@ -1,3 +1,22 @@
+function popUpTaskText() {
+    if (!document.getElementById('popUp')) {
+        let createTaskText = document.createElement('div');
+        createTaskText.id = 'popUp';
+        createTaskText.innerText = 'New Task';
+        document.getElementById('content').appendChild(createTaskText);
+    };
+};
+
+function popDownTaskText() {
+    if (document.getElementById('popUp')) {
+        const element = document.getElementById('popUp');
+        element.classList = 'remove';
+        setTimeout(() => {
+            element.remove();
+        }, 300);
+    };
+};
+
 export const lightMode = function () {
     const heading = document.getElementById('heading');
     const mainContainer = document.getElementById('mainContainer');
@@ -40,35 +59,25 @@ export const createTaskTextOnLoad = function () {
     setTimeout(() => { popDownTaskText() }, 5000);
 };
 
-function popUpTaskText() {
-    if (!document.getElementById('popUp')) {
-        let createTaskText = document.createElement('div');
-        createTaskText.id = 'popUp';
-        createTaskText.innerText = 'New Task';
-        document.getElementById('content').appendChild(createTaskText);
-    };
-};
 
-function popDownTaskText() {
-    if (document.getElementById('popUp')) {
-        const element = document.getElementById('popUp');
-        element.classList = 'remove';
-        setTimeout(() => {
-            element.remove();
-        }, 300);
-    };
-};
 
-export function timePeriod(value){
+export function timePeriod(value) {
     const date = new Date();
-    let currentDay= String(date.getDate()).padStart(2, '0');
-    let currentMonth = String(date.getMonth()+1).padStart(2,"0");
+    let currentDay = String(date.getDate()).padStart(2, '0');
+    let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
     let currentYear = date.getFullYear();
     let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-    let inYearDate = `${currentYear+1}-${currentMonth}-${currentDay}`;
-    if(value==='min'){
+    let inYearDate = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+    if (value === 'min') {
         return currentDate;
-    }else if(value==='max'){
+    } else if (value === 'max') {
         return inYearDate;
     }
 }
+
+export const prioritySwitch = function (){
+    document.getElementById('important').classList='';
+    document.getElementById('normal').classList='';
+    document.getElementById('low').classList='';
+    document.getElementById(this.id).classList='active';
+};

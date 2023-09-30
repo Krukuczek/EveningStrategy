@@ -1,4 +1,4 @@
-import Task, {createTaskContainer} from "./createTask.js";
+import {createTaskContainer} from "./createTask.js";
 import { lightMode, activeNavbar, createTaskText, createTaskTextOnLoad} from "./futures.js";
 
 document.getElementById('navbarButton').addEventListener('click', activeNavbar);

@@ -322,22 +322,22 @@ main {
 
 #important {
     color: rgb(44, 255, 44);
-    text-shadow: 0px 0px 5px #000;
+    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000 , 0px -1px 2px #000;
 }
 
 #normal {
-    color: rgb(248, 255, 44);
-    text-shadow: 0px 0px 5px #000;
+    color: rgb(245, 205, 25);
+    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000 , 0px -1px 2px #000;
 }
 
 #low {
     color: rgb(255, 44, 44);
-    text-shadow: 0px 0px 5px #000;
+    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000 , 0px -1px 2px #000;
 }
 
 #priority>div:hover {
     background-color: currentColor;
-    animation: scaleButton linear 0.1s;
+    animation: scaleButton ease-out 0.1s;
     transform: scale(110%);
 }
 #priority>div.active {
@@ -349,12 +349,11 @@ main {
     font-size: 2rem;
     background-color: #4FB477 ;
     border-radius: 2rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    padding: 0.5rem;
+    align-self: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 }
 #submitTask:hover{
-    animation: scaleButton linear 0.1s;
+    animation: scaleButton ease-out 0.1s;
     transform: scale(120%);
 }
 
