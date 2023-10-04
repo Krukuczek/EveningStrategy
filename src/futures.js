@@ -64,20 +64,27 @@ export const createTaskTextOnLoad = function () {
 export function timePeriod(value) {
     const date = new Date();
     let currentDay = String(date.getDate()).padStart(2, '0');
+    let tomorrowDay = String(date.getDate()+1).padStart(2, '0');
     let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
     let currentYear = date.getFullYear();
     let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
     let inYearDate = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+    let tomorrowDate= `${currentYear}-${currentMonth}-${tomorrowDay}`;
+    console.log(tomorrowDate);
     if (value === 'min') {
         return currentDate;
     } else if (value === 'max') {
         return inYearDate;
+    } else if (value === 'today'){
+        return currentDate;
+    } else if (value === 'tomorrow'){
+        return tomorrowDate;
     }
 }
 
-export const prioritySwitch = function (){
-    document.getElementById('important').classList='';
-    document.getElementById('normal').classList='';
-    document.getElementById('low').classList='';
-    document.getElementById(this.id).classList='active';
+export const prioritySwitch = function () {
+    document.getElementById('important').classList = '';
+    document.getElementById('normal').classList = '';
+    document.getElementById('low').classList = '';
+    document.getElementById(this.id).classList = 'active';
 };

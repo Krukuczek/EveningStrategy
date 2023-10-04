@@ -1,11 +1,9 @@
 import { prioritySwitch, timePeriod } from "./futures.js";
+import { allTasks } from "./index.js";
+import {showAllTasks} from "./showTasks.js";
 
-export const newTask = (title, description, taskDate, priority, done) => {
-  this.title = title;
-  this.description = description;
-  this.taskDate = taskDate;
-  this.priority = priority;
-  this.done = Boolean(done);
+export const newTask = (taskTitle, taskDescription, taskDate, taskPriority, taskDone) => {
+  return {taskTitle, taskDescription, taskDate, taskPriority, taskDone};
 };
 
 export const createTaskContainer = function () {
@@ -23,7 +21,7 @@ export const createTaskContainer = function () {
   let title = document.createElement('textarea');
   title.id = 'title';
   title.placeholder = "Title";
-  title.setAttribute('maxlength', '20');
+  title.setAttribute('maxlength', '30');
   taskForm.appendChild(title);
   //description text
   let description = document.createElement('textarea');
@@ -63,6 +61,7 @@ export const createTaskContainer = function () {
   submitTask.id = 'submitTask';
   submitTask.value = 'Create Task';
   taskForm.appendChild(submitTask);
+  //cancel task - X
   let exit = document.createElement('div');
   exit.id = "exitNewTask";
   exit.innerText = "X";
@@ -91,7 +90,21 @@ export const delNewTaskContainer = function () {
   element?.remove();
 };
 
-const createTask = function (){
+const createTask = function () {
+  let taskTitle = document.getElementById('title').value;
+  let taskDescription = document.getElementById('description').value;
+  let taskDate = document.getElementById('taskDate').value;
+  let taskPriority;
+  if (document.getElementById('important').classList.value === 'active') {
+    taskPriority = 'important';
+  } else if (document.getElementById('low').classList.value === 'active') {
+    taskPriority = 'low';
+  } else {
+    taskPriority = 'normal';
+  }
+  let taskDone = false;
+  allTasks.push(newTask(taskTitle, taskDescription, taskDate, taskPriority, taskDone));
+  showAllTasks();
   delNewTaskContainer();
 }
 

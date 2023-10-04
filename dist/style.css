@@ -9,7 +9,8 @@ body {
     /* font-family: 'Indie Flower', cursive; */
     font-family: 'Righteous', cursive;
     /* font-family: 'Roboto', sans-serif; */
-    background-color: rgb(184, 184, 184, 0.6);
+    background-color: rgb(235, 235, 235);
+    overflow: hidden;
 }
 
 header {
@@ -25,15 +26,18 @@ header {
     z-index: 0;
     font-size: 4vh;
     text-shadow: 0px 0px 1rem #000;
+    padding: 1rem;
 }
 
 main.night {
     background-color: rgb(42, 42, 42);
+    color: rgb(204, 204, 204);
     animation: toNight linear 0.5s;
 }
 
 main.day {
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(235, 235, 235);
+    color: rgb(33, 33, 33);
     animation: toDay linear 0.5s;
 }
 
@@ -82,29 +86,35 @@ main {
     flex: 10;
     display: flex;
     font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(235, 235, 235);
+    color: rgb(33, 33, 33);
 }
 
 #content {
     flex: 30;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 #navbar span {
     font-size: 2rem;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.5);
+    /* color: rgba(0, 0, 0, 0.5); */
 }
 
 #navbar {
-    background-color: rgba(0, 0, 0, 0);
     display: flex;
     animation: collappsenav 0.5s ease-out;
     flex: 0;
-    width: auto;
+    color:currentColor;
 }
 
 #navbarContent {
     flex: 6;
-    background-color: rgb(184, 184, 184, 0.6);
     animation: collappsenav 0.5s ease-in-out;
     width: 0px;
     color: transparent;
@@ -112,7 +122,6 @@ main {
 
 #navbarButton {
     margin-left: -1px;
-    background-color: rgb(173, 173, 173, 0.5);
     align-self: center;
     height: 30%;
     display: flex;
@@ -123,7 +132,6 @@ main {
 }
 
 #navbarButton:hover {
-    background-color: rgb(163, 163, 163, 0.6);
     cursor: pointer;
 }
 
@@ -154,6 +162,26 @@ main {
 #navbar.active #navbarButton>span {
     animation: flip 0.5s ease-in-out;
     transform: rotate(180deg);
+}
+
+main.day #navbarButton,
+main.day #navbarContent {
+    animation: toDay ease-out 0.5s;
+    background-color: rgb(216, 216, 216);
+}
+
+main.day #navbarButton:hover {
+    background-color: rgb(204, 204, 204);
+}
+
+main.night #navbarButton,
+main.night #navbarContent {
+    background-color: rgb(33, 33, 33);
+    animation: toNight ease-out 0.5s;
+}
+
+main.night #navbarButton:hover {
+    background-color: rgb(61, 61, 61);
 }
 
 #newTaskButton {
@@ -220,8 +248,8 @@ main {
 
 #taskContainer {
     position: relative;
-    width: 50vw;
-    height: 60vh;
+    width: 75vw;
+    height: 80vh;
     border-radius: 2rem;
     padding: 1.5rem;
     -webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
@@ -322,17 +350,17 @@ main {
 
 #important {
     color: rgb(44, 255, 44);
-    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000 , 0px -1px 2px #000;
+    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000, 0px -1px 2px #000;
 }
 
 #normal {
     color: rgb(245, 205, 25);
-    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000 , 0px -1px 2px #000;
+    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000, 0px -1px 2px #000;
 }
 
 #low {
     color: rgb(255, 44, 44);
-    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000 , 0px -1px 2px #000;
+    text-shadow: 1px 0px 2px #000, -1px 0px 2px #000, 0px 1px 2px #000, 0px -1px 2px #000;
 }
 
 #priority>div:hover {
@@ -340,6 +368,7 @@ main {
     animation: scaleButton ease-out 0.1s;
     transform: scale(110%);
 }
+
 #priority>div.active {
     background-color: currentColor;
 }
@@ -347,12 +376,13 @@ main {
 #submitTask {
     cursor: pointer;
     font-size: 2rem;
-    background-color: #4FB477 ;
+    background-color: #4FB477;
     border-radius: 2rem;
     align-self: center;
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
-#submitTask:hover{
+
+#submitTask:hover {
     animation: scaleButton ease-out 0.1s;
     transform: scale(120%);
 }
@@ -376,13 +406,75 @@ main {
     color: rgb(204, 204, 204);
 }
 
+#tasks {
+    height: 90%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-y: visible;
+    overflow-x: hidden;
+    gap: 1rem;
+}
+
+.task {
+    width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 2fr;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px 10px 0px;
+    -webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+}
+
+main.day .task {
+    background-color: rgb(216, 216, 216);
+    color: rgb(33, 33, 33);
+    animation: toDay ease-out 0.5s;
+}
+
+main.night .task {
+    background-color: rgb(33, 33, 33);
+    color: rgb(204, 204, 204);
+    animation: toNight ease-out 0.5s;
+}
+
+.task>div:first-child {
+    text-align: center;
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.task>div:nth-child(3) {
+    text-align: center;
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.task.normal {
+    border-left: rgb(245, 205, 25) solid 1.5rem;
+    border-radius: 1rem;
+}
+
+.task.important {
+    border-left: rgb(44, 255, 44) solid 1.5rem;
+    border-radius: 1rem;
+}
+
+.task.low {
+    border-left: rgb(255, 44, 44) solid 1.5rem;
+    border-radius: 1rem;
+}
+
 
 @keyframes scaleButton {
-    0%{
+    0% {
         transform: scale(100%);
     }
-    100%{
-    transform: scale(120%);
+
+    100% {
+        transform: scale(120%);
     }
 }
 
