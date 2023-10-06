@@ -1,34 +1,48 @@
 import { allTasks } from "./index.js";
 import { timePeriod } from "./futures.js";
 
+function displayTask(task, index, tasksContainer) {
+    let taskContent = document.createElement('div');
+    taskContent.classList = `task ${task.taskPriority} done_${task.taskDone}`;
+    taskContent.id = `task_${index}`;
+    let keys = Object.keys(task);
+    keys.forEach(key => {
+        let element = document.createElement('div');
+        element.classList = key;
+        switch (key) {
+            case 'taskDone':
+                taskContent.appendChild(element);
+                break;
+            case 'taskPriority':
+                break;
+            case 'taskDate':
+                if (task[key] === timePeriod('today')) {
+                    element.innerText = 'Today';
+                    element.classList = 'today';
+                }else if (task[key] === timePeriod('tomorrow')) {
+                    element.innerText = 'Tomorrow';
+                    element.classList = 'tomorrow';
+                }else if (task[key] < timePeriod('today')) {
+                    element.innerText = "Outstanding";
+                    element.classList.add('outstanding');
+                }else{
+                    element.innerText = task[key];
+                }
+                taskContent.appendChild(element);
+                break;
+            default:
+                element.innerText = (`${task[key]}`);
+                taskContent.appendChild(element);
+                break;
+        }
+    });
+    tasksContainer.appendChild(taskContent);
+};
 
 export function showAllTasks() {
-    function showTaskValues(task,index){
-        let taskContent = document.createElement('div');
-        taskContent.classList=`task ${task.taskPriority}`;
-        taskContent.id=`task_${index}`;
-        let keys=Object.keys(task);
-        keys.forEach(key => {
-            if(key==='taskDone'|| key==='taskPriority'){return 0};
-            let element= document.createElement('div');
-            element.classList=key;
-            if(key==='taskDate' && task[key]===timePeriod('today')){
-                element.innerText='Today';
-                element.classList='Today';
-            }else if(key==='taskDate' && task[key]===timePeriod('tomorrow')){
-                element.innerText='Tomorrow';
-                element.classList='Tomorrow';
-            }else{
-                element.innerText=(`${task[key]}`);
-            }
-            taskContent.appendChild(element);
-        });
-        content.appendChild(taskContent);
-    };
-    const content = document.getElementById('tasks');
-    content.innerHTML = '';
-    allTasks.forEach((task,index) => {
-        showTaskValues(task,index);
+    const tasksContainer = document.getElementById('tasks');
+    tasksContainer.innerHTML = '';
+    allTasks.forEach((task, index) => {
+        displayTask(task, index, tasksContainer);
     });
-    console.log(allTasks.length);
 };

@@ -1,3 +1,5 @@
+import { allTasks } from ".";
+
 function popUpTaskText() {
     if (!document.getElementById('popUp')) {
         let createTaskText = document.createElement('div');
@@ -70,7 +72,6 @@ export function timePeriod(value) {
     let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
     let inYearDate = `${currentYear + 1}-${currentMonth}-${currentDay}`;
     let tomorrowDate= `${currentYear}-${currentMonth}-${tomorrowDay}`;
-    console.log(tomorrowDate);
     if (value === 'min') {
         return currentDate;
     } else if (value === 'max') {
@@ -88,3 +89,16 @@ export const prioritySwitch = function () {
     document.getElementById('low').classList = '';
     document.getElementById(this.id).classList = 'active';
 };
+
+export const taskDoneSwitch = function () {
+    const tasksContainer = document.getElementById('tasks');
+    tasksContainer.addEventListener('click',function(e){
+        if(e.target.classList.contains('taskDone')){
+            let eventTarget = e.target.parentNode.id;
+            let taskNumber=eventTarget.slice(eventTarget.indexOf('_')+1);
+            document.getElementById(eventTarget).classList.remove(`done_${allTasks[taskNumber].taskDone}`);
+            allTasks[taskNumber].taskDone=!allTasks[taskNumber].taskDone;
+            document.getElementById(eventTarget).classList.add(`done_${allTasks[taskNumber].taskDone}`);
+        }
+    });
+}

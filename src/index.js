@@ -1,5 +1,5 @@
 import {createTaskContainer, newTask} from "./createTask.js";
-import { lightMode, activeNavbar, createTaskText, createTaskTextOnLoad} from "./futures.js";
+import { lightMode, activeNavbar, createTaskText, createTaskTextOnLoad, taskDoneSwitch} from "./futures.js";
 import { showAllTasks } from "./showTasks.js";
 
 export let allTasks= new Array;
@@ -45,10 +45,11 @@ function storageAvailable(type) {
     console.log('storageNotAvaible');
   }
 
-allTasks.push(newTask("Create Task", "lLorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, nemo ratione? A accusamus officia suscipit aliquam, maiores ea, omnis labore vel quam molestiae praesentium porro cumque similique, laudantium totam ipsam.","2023-10-04", "normal",false));
-allTasks.push(newTask("Create Task", "lLorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, nemo ratione? A accusamus officia suscipit aliquam, maiores ea, omnis labore vel quam molestiae praesentium porro cumque similique, laudantium totam ipsam.","2023-10-04", "normal",false));
-allTasks.push(newTask("Create Task", "lLorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, nemo ratione? A accusamus officia suscipit aliquam, maiores ea, omnis labore vel quam molestiae praesentium porro cumque similique, laudantium totam ipsam.","2023-10-04", "normal",false));
+allTasks.push(newTask("Create Task", "lLorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, nemo ratione? A accusamus officia suscipit aliquam, maiores ea, omnis labore vel quam molestiae praesentium porro cumque similique, laudantium totam ipsam.","2023-10-04", "normal",true));
+allTasks.push(newTask("Create Task", "lLorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, nemo ratione? A accusamus officia suscipit aliquam, maiores ea, omnis labore vel quam molestiae praesentium porro cumque similique, laudantium totam ipsam.","2023-10-07", "important",false));
+allTasks.push(newTask("Create Task", "lLorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, nemo ratione? A accusamus officia suscipit aliquam, maiores ea, omnis labore vel quam molestiae praesentium porro cumque similique, laudantium totam ipsam.","2023-10-11", "low",false));
 showAllTasks();
-// localStorage.setItem("Tasks");
+taskDoneSwitch();
+// localStorage.setItem("allTasks",allTasks);
 // console.log(localStorage.getItem(allTasks[0]));
 // localStorage.removeItem(allTasks[0],"XD");
